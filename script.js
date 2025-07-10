@@ -83,9 +83,14 @@ function playRound()
         compScore++;
     }
 
-    else
+    else if ((comp === "rock" && human==="rock") || (comp === "paper" && human==="paper") || (comp === "scissors" && human==="scissors"))
     {
         console.log(`Computer played ${comp}. Tie!`);
+    }
+
+    else
+    {
+        console.log("Surely you haven't mistyped it, have you?");
     }
 }
 
