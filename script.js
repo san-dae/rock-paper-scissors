@@ -4,7 +4,8 @@ const textElement = document.querySelector('.commentary p');
 let textToType = "Do you dare to play? ";
 let charIndex = 0;
 
-function typeWriter() {
+function typeWriter() 
+{
     if (charIndex < textToType.length) {
         textElement.textContent += textToType.charAt(charIndex);
         charIndex++;
@@ -12,7 +13,6 @@ function typeWriter() {
     }
 }
 
-// Call the function to start the effect
 typeWriter();
 
 function removeWriter()
@@ -24,10 +24,12 @@ function removeWriter()
     }
 }
 
-function showTextAfterRemoval(newText) {
+function showTextAfterRemoval(newText) 
+{
     let delay = textToType.length * 30 + 80;
     removeWriter();
-    setTimeout(() => {
+    setTimeout(() => 
+    {
         textToType = newText;
         charIndex = 0;
         typeWriter();
@@ -48,24 +50,24 @@ function value(event)
 }
 
 const rock = document.querySelector("#rock");
-    const paper = document.querySelector("#paper");
-    const scissors = document.querySelector("#scissors");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
 
 
-playButton.addEventListener("click", () => {
+playButton.addEventListener("click", () => 
+{
     rock.addEventListener("click", value);
-
     paper.addEventListener("click",value);
-
     scissors.addEventListener("click",value);
     
     playButton.remove();
     removeWriter();        
-    setTimeout(() => {
+    setTimeout(() => 
+    {
         textToType = "Pick your choice.";
         charIndex = 0;
         typeWriter();
-    }, textToType.length * 40 + 100); // Wait till old text is removed
+    }, textToType.length * 40 + 100); 
 
     scoreDiv.style.cssText = "display: block;";
 });
@@ -99,13 +101,13 @@ function getComputerChoice()
 function playRound(human)
 {
     let comp = getComputerChoice();
-    
 
     if (comp==="rock" && human==="scissors")
     {
         showTextAfterRemoval("Computer played Rock.");
         compScore++;
     }
+    
     else if (comp === "scissors" && human === "rock")
     {
         showTextAfterRemoval("Computer played Scissors.");
