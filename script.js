@@ -15,25 +15,22 @@ function typeWriter()
 
 typeWriter();
 
-function removeWriter()
-{
+function removeWriter(callback) {
     if (charIndex > 0) {
         charIndex--;
         textElement.textContent = textToType.substring(0, charIndex);
-        setTimeout(removeWriter, 30);
+        setTimeout(() => removeWriter(callback), 30);
+    } else {
+        if (callback) callback(); // Only start typing when removal is fully done
     }
 }
 
-function showTextAfterRemoval(newText) 
-{
-    let delay = textToType.length * 30 + 80;
-    removeWriter();
-    setTimeout(() => 
-    {
+function showTextAfterRemoval(newText) {
+    removeWriter(() => {
         textToType = newText;
         charIndex = 0;
         typeWriter();
-    }, delay);
+    });
 }
 
 /*make the score appear and the game start after clicking play*/
@@ -100,6 +97,24 @@ function getComputerChoice()
 
 function playRound(human)
 {
+    if (humanScore == 5 || compScore == 5) 
+    {
+        setTimeout(() => 
+        {
+            rock.removeEventListener("click", value);
+            paper.removeEventListener("click", value);
+            scissors.removeEventListener("click", value);
+
+            if (compScore > humanScore) {
+                showTextAfterRemoval("A disappointing yet predictable loss.");
+            } else {
+                showTextAfterRemoval("You sold your soul to win, didn't you?");
+            } 
+        }, textToType.length * 140 + 150);
+        
+        return;
+    }
+    
     let comp = getComputerChoice();
 
     if (comp==="rock" && human==="scissors")
@@ -107,7 +122,7 @@ function playRound(human)
         showTextAfterRemoval("Computer played Rock.");
         compScore++;
     }
-    
+
     else if (comp === "scissors" && human === "rock")
     {
         showTextAfterRemoval("Computer played Scissors.");
@@ -161,20 +176,4 @@ function playRound(human)
     }
 
     actualScore.textContent = `${humanScore} - ${compScore}`;
-
-    if (humanScore == 5 || compScore == 5) 
-    {
-        setTimeout(() => 
-        {
-            rock.removeEventListener("click", value);
-            paper.removeEventListener("click", value);
-            scissors.removeEventListener("click", value);
-
-            if (compScore > humanScore) {
-                showTextAfterRemoval("A disappointing yet predictable loss.");
-            } else {
-                showTextAfterRemoval("You sold your soul to win, didn't you?");
-            } 
-        }, textToType.length * 140 + 150); 
-    }
 }

@@ -57,11 +57,17 @@ img
     text-align: center;
 }
 
+.bigg
+{
+    display: flex;
+    flex-shrink: 0;
+}
+
 .rps-buttons
 {
     background-color: transparent;
     width:330px;
-    height: 286px;
+    height: 300px;
     position: relative;
     margin: 40px;
 }
