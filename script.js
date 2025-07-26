@@ -1,3 +1,4 @@
+/*
 let humanScore = 0;
 let compScore = 0;
 
@@ -121,3 +122,24 @@ function playGame()
 }
 
 playGame();
+
+
+/*Starting ANEW!*/
+
+const textElement = document.querySelector('.commentary p');
+    const textToType = "Let's do this. Are you ready? ";
+    let charIndex = 0;
+
+    function typeWriter() {
+        if (charIndex < textToType.length) {
+            textElement.textContent += textToType.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeWriter, 150); // Adjust typing speed here (milliseconds)
+        }
+    }
+
+    // Call the function to start the effect
+    typeWriter();
+
+
+    /*make the score appear and the game start after clicking play*/
