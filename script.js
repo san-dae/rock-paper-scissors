@@ -39,7 +39,26 @@ function showTextAfterRemoval(newText) {
 playButton = document.querySelector(".play");
 scoreDiv = document.querySelector(".score");
 
+function value(event)
+{
+    let human = event.currentTarget.id;
+
+    console.log(human);
+    playRound(human);
+}
+
+const rock = document.querySelector("#rock");
+    const paper = document.querySelector("#paper");
+    const scissors = document.querySelector("#scissors");
+
+
 playButton.addEventListener("click", () => {
+    rock.addEventListener("click", value);
+
+    paper.addEventListener("click",value);
+
+    scissors.addEventListener("click",value);
+    
     playButton.remove();
     removeWriter();        
     setTimeout(() => {
@@ -52,24 +71,6 @@ playButton.addEventListener("click", () => {
 });
 
 const actualScore = document.querySelector("#two");
-
-const rock = document.querySelector("#rock");
-const paper = document.querySelector("#paper");
-const scissors = document.querySelector("#scissors");
-
-function value(event)
-{
-    let human = event.currentTarget.id;
-
-    console.log(human);
-    playRound(human);
-}
-
-rock.addEventListener("click", value);
-
-paper.addEventListener("click",value);
-
-scissors.addEventListener("click",value);
 
 let humanScore = 0;
 let compScore = 0;
@@ -97,7 +98,7 @@ function getComputerChoice()
 
 function playRound(human)
 {
-        let comp = getComputerChoice();
+    let comp = getComputerChoice();
     
 
     if (comp==="rock" && human==="scissors")
@@ -175,12 +176,3 @@ function playRound(human)
         }, textToType.length * 140 + 150); 
     }
 }
-
-
-
-
-
-
-
-
-
