@@ -127,19 +127,43 @@ playGame();
 /*Starting ANEW!*/
 
 const textElement = document.querySelector('.commentary p');
-    const textToType = "Let's do this. Are you ready? ";
-    let charIndex = 0;
+let textToType = "Let's do this. Are you ready? ";
+let charIndex = 0;
 
-    function typeWriter() {
-        if (charIndex < textToType.length) {
-            textElement.textContent += textToType.charAt(charIndex);
-            charIndex++;
-            setTimeout(typeWriter, 150); // Adjust typing speed here (milliseconds)
-        }
+function typeWriter() {
+    if (charIndex < textToType.length) {
+        textElement.textContent += textToType.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeWriter, 150); // Adjust typing speed here (milliseconds)
     }
+}
 
-    // Call the function to start the effect
-    typeWriter();
+// Call the function to start the effect
+typeWriter();
 
+function removeWriter()
+{
+    if (charIndex > 0) {
+        charIndex--;
+        textElement.textContent = textToType.substring(0, charIndex);
+        setTimeout(removeWriter, 40);
+    }
+}
 
-    /*make the score appear and the game start after clicking play*/
+/*make the score appear and the game start after clicking play*/
+
+playButton = document.querySelector(".play");
+scoreDiv = document.querySelector(".score");
+
+playButton.addEventListener("click", () => {
+    playButton.remove();
+    removeWriter();        
+    setTimeout(() => {
+        textToType = "Pick your choice.";
+        charIndex = 0;
+        typeWriter();
+    }, textToType.length * 40 + 100); // Wait till old text is removed
+
+    scoreDiv.style.cssText = "display: block;";
+});
+
