@@ -155,7 +155,7 @@ function playRound(human)
 
     else if ((comp === "rock" && human==="rock") || (comp === "paper" && human==="paper") || (comp === "scissors" && human==="scissors"))
     {
-        showTextAfterRemoval(`Tie. ${comp}.`);        
+        showTextAfterRemoval("Tie.");        
     }
 
     else
