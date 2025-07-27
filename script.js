@@ -113,13 +113,13 @@ function playRound(human)
 
     else if (comp === "scissors" && human === "rock")
     {
-        showTextAfterRemoval("Computer played Scissors.");
+        showTextAfterRemoval("Scissors.");
         humanScore++;
     }
 
     else if (comp === "rock" && human === "paper")
     {
-        showTextAfterRemoval("Computer played Rock.");
+        showTextAfterRemoval("Rock.");
         humanScore++;
     }
 
@@ -131,31 +131,31 @@ function playRound(human)
 
     else if (comp==="paper" && human==="scissors")
     {
-        showTextAfterRemoval("Computer played Paper.");
+        showTextAfterRemoval("Paper.");
         humanScore++;
     }
 
     else if (comp === "scissors" && human==="paper")
     {
-        showTextAfterRemoval("Computer played Scissors.");
+        showTextAfterRemoval("Scissors.");
         compScore++;
     }
 
     else if (comp==="scissors" && human==="rock")
     {
-        showTextAfterRemoval("Computer played Scissors.");
+        showTextAfterRemoval("Scissors.");
         humanScore++;
     }
 
     else if (comp === "rock" && human==="scissors")
     {
-        showTextAfterRemoval("Computer played Rock.");
+        showTextAfterRemoval("Rock.");
         compScore++;
     }
 
     else if ((comp === "rock" && human==="rock") || (comp === "paper" && human==="paper") || (comp === "scissors" && human==="scissors"))
     {
-        showTextAfterRemoval(`Computer played ${comp}. Tie.`);        
+        showTextAfterRemoval(`${comp}. Tie.`);        
     }
 
     else
