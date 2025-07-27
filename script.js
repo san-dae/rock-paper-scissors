@@ -38,11 +38,12 @@ function showTextAfterRemoval(newText) {
 playButton = document.querySelector(".play");
 scoreDiv = document.querySelector(".score");
 
+let gameFlag = true;
+
 function value(event)
 {
     let human = event.currentTarget.id;
 
-    console.log(human);
     playRound(human);
 }
 
@@ -97,21 +98,8 @@ function getComputerChoice()
 
 function playRound(human)
 {
-    if (humanScore == 5 || compScore == 5) 
+    if (gameFlag == false)
     {
-        setTimeout(() => 
-        {
-            rock.removeEventListener("click", value);
-            paper.removeEventListener("click", value);
-            scissors.removeEventListener("click", value);
-
-            if (compScore > humanScore) {
-                showTextAfterRemoval("A disappointing yet predictable loss.");
-            } else {
-                showTextAfterRemoval("You sold your soul to win, didn't you?");
-            } 
-        }, textToType.length * 140 + 150);
-        
         return;
     }
     
@@ -176,4 +164,21 @@ function playRound(human)
     }
 
     actualScore.textContent = `${humanScore} - ${compScore}`;
+
+    if (humanScore == 5 || compScore == 5) 
+    {
+        gameFlag = false;
+        
+        rock.removeEventListener("click", value);
+        paper.removeEventListener("click", value);
+        scissors.removeEventListener("click", value);
+
+        if (compScore > humanScore) {
+            showTextAfterRemoval("A disappointing yet predictable loss.");
+        } else {
+            showTextAfterRemoval("You sold your soul to win, didn't you?");
+        } 
+        
+        return;
+    }
 }
